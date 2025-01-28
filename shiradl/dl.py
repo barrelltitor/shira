@@ -146,9 +146,10 @@ class Dl:
             if video["id"] == video_id:
                 tags["track"] = i + 1
                 break
-        if ytmusic_watch_playlist["lyrics"]:
-            lyrics = self.ytmusic.get_lyrics(ytmusic_watch_playlist["lyrics"])["lyrics"]
-            if lyrics is not None:
+        if ytmusic_watch_playlist["lyrics"]:   
+            lyrics_data = self.ytmusic.get_lyrics(ytmusic_watch_playlist["lyrics"])
+            if lyrics_data is not None and lyrics in lyrics_data:
+                lyrics=lyrics_data["lyrics"]
                 tags["lyrics"] = lyrics
         
         self.tags = tags
